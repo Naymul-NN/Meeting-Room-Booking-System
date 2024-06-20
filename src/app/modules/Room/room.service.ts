@@ -7,6 +7,14 @@ const createRoomintoDb = async (payload: Troom) => {
     return result;
 };
 
+const getAllRoomFromDb = async () => {
+    const result = await Room.find();
+    return result;
+};
+
+
+
 export const roomService = {
     createRoomintoDb,
+    getAllRoomFromDb,
 }
