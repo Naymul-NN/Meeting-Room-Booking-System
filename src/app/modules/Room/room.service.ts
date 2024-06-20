@@ -12,9 +12,15 @@ const getAllRoomFromDb = async () => {
     return result;
 };
 
+const getSingleRoomFromDb = async (id:string) => {
+    const result = await Room.findById(id);
+    return result;
+};
+
 
 
 export const roomService = {
     createRoomintoDb,
     getAllRoomFromDb,
+    getSingleRoomFromDb,
 }

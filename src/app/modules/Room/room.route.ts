@@ -14,6 +14,7 @@ validationRequest(roomValidation.roomValidationSchema),
 roomcontroller.createRoom);
 
 router.get('/',roomcontroller.getALLRoom)
+router.get('/:id',roomcontroller.getSingleRoom)
 
 
 export const RoomRoutes = router
