@@ -17,10 +17,22 @@ const getSingleRoomFromDb = async (id:string) => {
     return result;
 };
 
+const updateRoomInfo = async (
+    id: string,
+    payload: Partial<Troom>,
+) => {
+
+    const result = await Room.findByIdAndUpdate({ _id: id }, payload, {
+        new: true,
+    });
+    return result;
+};
+
 
 
 export const roomService = {
     createRoomintoDb,
     getAllRoomFromDb,
     getSingleRoomFromDb,
+    updateRoomInfo
 }
