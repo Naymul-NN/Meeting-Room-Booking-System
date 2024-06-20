@@ -8,7 +8,7 @@ const createRoomintoDb = async (payload: Troom) => {
 };
 
 const getAllRoomFromDb = async () => {
-    const result = await Room.find();
+    const result = await Room.find({ isDeleted: { $ne: true } });
     return result;
 };
 
@@ -28,11 +28,21 @@ const updateRoomInfo = async (
     return result;
 };
 
+const deleteRoomFromDB = async (id: string) => {
+    const result = await Room.findByIdAndUpdate(id, { isDeleted: true },
+        {
+            new: true,
+        },
+    );
+    return result;
+}
+
 
 
 export const roomService = {
     createRoomintoDb,
     getAllRoomFromDb,
     getSingleRoomFromDb,
-    updateRoomInfo
+    updateRoomInfo,
+    deleteRoomFromDB
 }

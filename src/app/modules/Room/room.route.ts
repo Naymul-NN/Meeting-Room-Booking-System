@@ -17,6 +17,7 @@ router.get('/',roomcontroller.getALLRoom)
 
 router.get('/:id',roomcontroller.getSingleRoom)
 router.put('/:id',roomcontroller.updateRoom)
+router.delete('/:id',roomcontroller.deleteRoom)
 
 
 export const RoomRoutes = router
