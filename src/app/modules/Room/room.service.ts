@@ -1,3 +1,4 @@
+import AppError from "../../error/appErrors";
 import { Troom } from "./room.interface";
 import { Room } from "./room.model";
 
@@ -14,6 +15,9 @@ const getAllRoomFromDb = async () => {
 
 const getSingleRoomFromDb = async (id:string) => {
     const result = await Room.findById(id);
+    if (!result) {
+        throw new AppError(404, 'this room not found');
+      }
     return result;
 };
 
