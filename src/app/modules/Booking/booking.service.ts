@@ -59,8 +59,18 @@ const updateBookingnfo = async (
     return result;
 };
 
+const deleteBookingFromDB = async (id: string) => {
+    const result = await Booking.findByIdAndUpdate(id, { isDeleted: true },
+        {
+            new: true,
+        },
+    );
+    return result;
+}
+
 export const bookingService = {
     getAllBookingFromDb,
     createBooking,
-    updateBookingnfo
+    updateBookingnfo,
+    deleteBookingFromDB,
 }

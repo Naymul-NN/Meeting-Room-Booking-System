@@ -20,7 +20,7 @@ const getALLBookings = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'Rooms retrieved successfully',
+        message: 'booking retrieved successfully',
         data: result
     })
   });
@@ -34,15 +34,26 @@ const getALLBookings = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'Rooms updated successfully',
+        message: 'booking updated successfully',
         data: result
     })
   });
 
+  const deleteBooking = catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const result = await bookingService.deleteBookingFromDB( id)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Booking deleted successfully',
+        data: result
+    })
+  });
 
 export  const bookingController = {
  createBookingController ,
  getALLBookings,
- updateBooking
+ updateBooking,
+ deleteBooking,
 
 };
