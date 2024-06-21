@@ -11,11 +11,11 @@ const slotSchema = new Schema<Tslot>({
         type: Date
      },
     startTime: {
-        type: Number,
+        type: String,
         required: true,
     },
     endTime: {
-        type: Number,
+        type: String,
         required: true,
     },
     isBooked: {
