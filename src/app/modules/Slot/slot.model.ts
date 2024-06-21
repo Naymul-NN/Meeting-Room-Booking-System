@@ -1,15 +1,18 @@
+
+
 import { Schema, model } from "mongoose";
 import { Tslot } from "./slot.interface";
+
 
 const slotSchema = new Schema<Tslot>({
     room: {
         type: Schema.Types.ObjectId,
-        required: [true, 'room id is required'],
+        required: [true, 'Room ID is required'],
         ref: 'Room'
     },
-    date:{ 
+    date: { 
         type: Date
-     },
+    },
     startTime: {
         type: String,
         required: true,
@@ -19,12 +22,12 @@ const slotSchema = new Schema<Tslot>({
         required: true,
     },
     isBooked: {
-      type: Boolean,
-      default: false,
+        type: Boolean,
+        default: false,
     },
 },
-    {
-        timestamps: true
-    });
+{
+    timestamps: true
+});
 
-export const Slot = model<Tslot>('slot', slotSchema);
+export const Slot = model<Tslot>('Slot', slotSchema);
