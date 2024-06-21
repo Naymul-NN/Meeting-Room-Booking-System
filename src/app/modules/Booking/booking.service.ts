@@ -43,12 +43,24 @@ import { Tbooking } from "./booking.interface";
     return populatedBooking;
 };
 
-export const getAllBookingFromDb = async () => {
-    const result = await Room.find();
+ const getAllBookingFromDb = async () => {
+    const result = await Booking.find();
+    return result;
+};
+
+const updateBookingnfo = async (
+    id: string,
+    payload: Partial<Tbooking>,
+) => {
+
+    const result = await Booking.findByIdAndUpdate({ _id: id }, payload, {
+        new: true,
+    });
     return result;
 };
 
 export const bookingService = {
     getAllBookingFromDb,
     createBooking,
+    updateBookingnfo
 }
