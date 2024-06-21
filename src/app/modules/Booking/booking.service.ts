@@ -7,7 +7,7 @@ import { Booking } from "./bookign.model";
 import { Tbooking } from "./booking.interface";
 
 // Function to create a new booking
-export const createBooking = async (payload: Tbooking) => {
+ const createBooking = async (payload: Tbooking) => {
     // Retrieve the room details to get the price per slot
     const room = await Room.findById(payload.room);
     if (!room) {
@@ -42,3 +42,13 @@ export const createBooking = async (payload: Tbooking) => {
 
     return populatedBooking;
 };
+
+export const getAllBookingFromDb = async () => {
+    const result = await Room.find();
+    return result;
+};
+
+export const bookingService = {
+    getAllBookingFromDb,
+    createBooking,
+}

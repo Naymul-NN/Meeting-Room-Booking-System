@@ -1,10 +1,11 @@
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
-import { createBooking } from "./booking.service";
+import { bookingService } from "./booking.service";
+
 
 const createBookingController = catchAsync(async (req, res) => {
-    const result = await createBooking(req.body);
+    const result = await bookingService.createBooking(req.body);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,
@@ -14,4 +15,18 @@ const createBookingController = catchAsync(async (req, res) => {
     });
 });
 
-export { createBookingController };
+const getALLBookings = catchAsync(async (req, res) => {
+    const result = await bookingService.getAllBookingFromDb()
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Rooms retrieved successfully',
+        data: result
+    })
+  });
+
+export  const bookingController = {
+ createBookingController ,
+ getALLBookings
+
+};

@@ -1,9 +1,11 @@
 import express from "express"
-import { createBookingController } from "./booking.controller";
+import { bookingController } from "./booking.controller";
+// import { createBookingController } from "./booking.controller";
 
 const router = express.Router();
 
-router.post('/', createBookingController);
+router.post('/', bookingController.createBookingController);
+router.get('/', bookingController.getALLBookings);
 
 
 
