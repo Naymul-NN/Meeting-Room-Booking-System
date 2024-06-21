@@ -38,4 +38,4 @@ const roomSchema = new Schema<Troom>({
 );
 
 
-export const Room = model<Troom>('room',roomSchema)
+export const Room = model('Room', roomSchema);

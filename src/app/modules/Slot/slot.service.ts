@@ -1,9 +1,10 @@
 
+// import { Room } from "../Room/room.model";
 import { Tslot } from "./slot.interface";
-import { slot } from "./slot.model";
+import { Slot } from "./slot.model";
 
 export const createRoomSlotsIntoDb = async (slots: Tslot[]) => {
-    const result = await slot.insertMany(slots);
+    const result = await Slot.insertMany(slots);
     return result;
 };
 
@@ -34,4 +35,22 @@ const minutesToTime = (minutes: number): string => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
+};
+
+// Function to retrieve available slots based on date and roomId
+export const getAvailableSlots = async (date?: string, roomId?: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const query: any = { isBooked: false };
+
+    if (date) {
+        query.date = date;
+    }
+
+    if (roomId) {
+        query.room = roomId;
+    }
+
+    // Use populate to include room details
+    const result = await Slot.find(query).populate('room');
+    return result;
 };

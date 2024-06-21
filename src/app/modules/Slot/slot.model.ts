@@ -27,4 +27,4 @@ const slotSchema = new Schema<Tslot>({
         timestamps: true
     });
 
-export const slot = model<Tslot>('slot', slotSchema);
+export const Slot = model<Tslot>('slot', slotSchema);
