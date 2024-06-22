@@ -2,10 +2,12 @@ import httpStatus from "http-status";
 import AppError from "../../error/appErrors";
 import { User } from "../user/user.model";
 import { TLoginUser } from "./auth.interface";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import config from "../../config";
 
 const loginUser = async (payload: TLoginUser)=> {
-    console.log(payload)
+   
     // checking if the user is exist
 
     const user = await User.findOne({email: payload?.email})
@@ -27,9 +29,25 @@ const loginUser = async (payload: TLoginUser)=> {
         address: user.address,
         // Add any other fields you need to return
     };
+
+    // access token
+
+    const jwtPayload = {
+        userEmail: user.email,
+        role: user.role
+    }
+
+    const accessToken = jwt.sign(
+        jwtPayload,
+        config.jwt_access_secret as string,
+        {expiresIn: '10d'}
+    )
     
     
-    return {userDetails};
+    return {
+        token: accessToken,
+        data: userDetails,
+    };
 }
 
 export const AuthService = {
