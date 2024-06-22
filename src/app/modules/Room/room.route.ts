@@ -11,15 +11,23 @@ import { USER_ROLE } from '../user/user.constant';
 
 const router = express.Router();
 
-router.post('/', 
-validationRequest(roomValidation.roomValidationSchema),
-roomcontroller.createRoom);
+router.post('/',
+    auth(USER_ROLE.admin),
+    validationRequest(roomValidation.roomValidationSchema),
+    roomcontroller.createRoom);
 
-router.get('/', auth(USER_ROLE.admin) ,roomcontroller.getALLRoom)
+router.get('/',
+    roomcontroller.getALLRoom)
 
-router.get('/:id',roomcontroller.getSingleRoom)
-router.put('/:id',roomcontroller.updateRoom)
-router.delete('/:id',roomcontroller.deleteRoom)
+router.get('/:id', roomcontroller.getSingleRoom)
+
+router.put('/:id',
+    auth(USER_ROLE.admin),
+    roomcontroller.updateRoom)
+
+router.delete('/:id',
+    auth(USER_ROLE.admin),
+    roomcontroller.deleteRoom)
 
 
 export const RoomRoutes = router
