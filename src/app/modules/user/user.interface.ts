@@ -1,3 +1,4 @@
+import { USER_ROLE } from "./user.constant";
 
 export type  Trole = 'user' | 'admin' ;
 export type TUser = {
@@ -9,3 +10,5 @@ export type TUser = {
     address: string;
 
 }
+
+export type TuserRole = keyof typeof USER_ROLE;
