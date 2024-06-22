@@ -15,6 +15,7 @@ const createRoom = catchAsync(async (req, res) => {
   });
 
 const getALLRoom = catchAsync(async (req, res) => {
+  console.log('test', req.user)
     const result = await roomService.getAllRoomFromDb()
     sendResponse(res, {
         statusCode: httpStatus.OK,
@@ -50,6 +51,7 @@ const updateRoom = catchAsync(async (req, res) => {
   });
 
 const deleteRoom = catchAsync(async (req, res) => {
+  
     const { id } = req.params;
     const result = await roomService.deleteRoomFromDB( id)
     sendResponse(res, {
