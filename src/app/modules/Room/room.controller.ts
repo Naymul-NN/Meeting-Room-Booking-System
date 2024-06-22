@@ -57,7 +57,7 @@ const deleteRoom = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'Rooms updated successfully',
+        message: 'Rooms deleted successfully',
         data: result
     })
   });
